@@ -17,7 +17,7 @@
       Si vous souhaitez ajouter d'autres paramètres de routes , vous pouvez les ajouter une à une en respectant bien l'indentation(utilisez des espaces et non des tabulations). En effet, la syntaxe Yaml y est très sensible
     </p>
     
-     <h2>Exemple</h2>
+c
 
     <?php
 list:
@@ -35,6 +35,38 @@ task_show:
       on remarque certainement que le principe rest le même qu'avec le système d'annotation.
       Par exemple, dans la méthode task_show, il y'a dans path un paramètre dynamiquesuivientre chevrons d'un requirement ainsi que d'une valeur par defaults. "requirement" et "defaults" auraient aussi pu etre énumérés en desssous.
     </p>
+
+     <h2>Remarque</h2>
+
+    Si vous choisissez de définir l'ensemble de vos routes en YAMLalors il est préférable pour une meilleure organisation, de créer dans le dossier routes (qui se trouve dans le dossier config à la racine du projet), des fichiers qui  seront classés dans des dossiers, suivant l'arborescence que vous désirer, contenant chacun sa route.
+
+    Ainsi vous aurez :
+
+    config\
+        routes\
+            users\
+                tasks\
+                    index.yaml
+                    task_show.yaml
+
+    imaginez maintenant que pour une quelconque raison, une route de votre application n'existe plus.
+    Symfony propose un controller de redirection afin que les utilisateurs soient redirigés vers la pageque vous avez complacer.
+
+     <h2>Exemple</h2>
+    
+    <?php
+
+redirection_vers_nouvelle_page
+    path: / ancienne_page
+    controller: Symfony\Bundle\Frameworks\Controller\RedirectController
+    defaults:
+        route: 'nom_nouvelle_route'
+        pernament: true
+        keepQueryParams: true
+    
+?>
+
+    
 
   
   </body>
